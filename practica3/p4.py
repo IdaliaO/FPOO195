@@ -1,5 +1,6 @@
 varnombre= input("escribe tu nombre")
 varmayusculas= varnombre.upper()
-varcaracteres = len (varnombre)
+varsinespacios = varnombre.replace(" ", "")
+varcaracteres = len (varsinespacios)
 print("Nombre es", varmayusculas, "Tiene", varcaracteres)
 

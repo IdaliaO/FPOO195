@@ -1,4 +1,6 @@
+varpayasos=int(input("Numero de payasos"))
+varmuñecas=int(input("Numero de muñecas"))
 varp=112
 varm= 75
-varpayasos=float(input("Numero de payasos"))
-varmuñecas=float(input("Numero de muñecas"))
+total= (varpayasos * varp)+(varmuñecas*varm)
+print("El peso total es", total)
