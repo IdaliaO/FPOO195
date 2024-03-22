@@ -1,0 +1,35 @@
+body, html {
+height: 100%;
+margin: 0;
+}
+.bg {
+background-image: url("/img/fondo.png");
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+.login-container {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.card {
+margin: auto;
+background-color: rgba(255, 255, 255, 0.5); 
+backdrop-filter:blur (10px);
+border-radius: 20px; 
+border: 1px solid rgba (255,255,255,0.3);
+overflow: hidden;
+}
+.card-body {
+padding: 2rem;
+}
+.footer-text {
+    color: white; /* Color de texto */
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    bottom: 30px; /* Distancia desde el fondo de la página */
+  }
