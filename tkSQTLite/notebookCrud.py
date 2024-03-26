@@ -6,6 +6,15 @@ from Controlador import *
 objControlador= Controlador ()
 def ejecutaInsert():
     objControlador.insertUsuario(var1.get(), var2.get(), var3.get())
+
+def busUsuario():
+    usuarioBD=objControlador.buscarUsuario(varBus.get())
+    busqueda.delete("1.0", END)
+    if usuarioBD == []:
+        messagebox.showwarning("Nada", "Id no existe en BD")
+    else:
+        busqueda.insert(END, str(usuarioBD))
+    
 # 1 Crear la ventana
 Ventana = Tk()
 Ventana.title("CRUD de Usuarios")
@@ -46,5 +55,17 @@ Label(pestana1, text="Contraseña").pack()
 Entry(pestana1, textvariable=var3).pack()
 
 Button(pestana1, text ="Guardar Usuario", command=ejecutaInsert).pack()
+
+#6. Pestaña 1: Buscar usuario.
+
+Label (pestana2, text= "Guardar Usuario", fg="red", font=("Mono", 18)).pack()
+varBus= tk.StringVar()
+Label(pestana2, text="Id: ").pack()
+Entry(pestana2, textvariable=varBus).pack()
+Button(pestana2, text ="Buscar Usuario", command=busUsuario).pack()
+Label (pestana2, text= "Registrado: ", fg="blue", font=("Mono", 14)).pack()
+tk.Text(pestana2, height=5, width=52).pack()
+busqueda = tk.Text(pestana2, height=5, width=52)
+busqueda.pack()
 
 Ventana.mainloop()
