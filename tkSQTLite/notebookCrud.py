@@ -11,7 +11,7 @@ def busUsuario():
     usuarioBD=objControlador.buscarUsuario(varBus.get())
     busqueda.delete("1.0", END)
     if usuarioBD == []:
-        messagebox.showwarning("Nada", "Id no existe en BD")
+        messagebox.showwarning("Nada", "No existe en base de datos")
     else:
         busqueda.insert(END, str(usuarioBD))
     
@@ -64,7 +64,6 @@ Label(pestana2, text="Id: ").pack()
 Entry(pestana2, textvariable=varBus).pack()
 Button(pestana2, text ="Buscar Usuario", command=busUsuario).pack()
 Label (pestana2, text= "Registrado: ", fg="blue", font=("Mono", 14)).pack()
-tk.Text(pestana2, height=5, width=52).pack()
 busqueda = tk.Text(pestana2, height=5, width=52)
 busqueda.pack()
 
