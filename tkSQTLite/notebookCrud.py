@@ -14,6 +14,22 @@ def busUsuario():
         messagebox.showwarning("Nada", "No existe en base de datos")
     else:
         busqueda.insert(END, str(usuarioBD))
+
+def TreeView():
+    global lista
+    lista = ttk.Treeview(pestana3, columns=("Id", "Nombre", "Correo", "Contraseña"), show="headings")
+    lista.heading("Id", text="ID") 
+    lista.heading("Nombre", text="Nombre")
+    lista.heading("Correo", text="Correo")
+    lista.heading("Contraseña", text="Contraseña")
+    lista.pack(fill=BOTH, expand=True)
+
+def conUsuario():
+    usuarios = objControlador.todosUsuarios()
+    for i in lista.get_children():
+        lista.delete(i)
+    for usuario in usuarios:
+        lista.insert("", END, values=usuario)
     
 # 1 Crear la ventana
 Ventana = Tk()
@@ -66,5 +82,11 @@ Button(pestana2, text ="Buscar Usuario", command=busUsuario).pack()
 Label (pestana2, text= "Registrado: ", fg="blue", font=("Mono", 14)).pack()
 busqueda = tk.Text(pestana2, height=5, width=52)
 busqueda.pack()
+
+#7. Pestaña 3: Consultar Usuario
+
+Label(pestana3, text="Usuarios", fg ="blue", font=("Mono", 15)).pack()
+TreeView()
+Button(pestana3, text="Actualizar Lista de Usuarios", command=conUsuario).pack()
 
 Ventana.mainloop()
