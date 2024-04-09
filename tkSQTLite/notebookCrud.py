@@ -2,10 +2,16 @@ from tkinter import *
 from tkinter import ttk
 import tkinter as tk 
 from Controlador import *
+from GeneradorPDF import *
+import os 
 
 objControlador= Controlador ()
+objPDF=GeneradorPDF()
+
 def ejecutaInsert():
     objControlador.insertUsuario(var1.get(), var2.get(), var3.get())
+
+
 
 def busUsuario():
     usuarioBD=objControlador.buscarUsuario(varBus.get())
@@ -30,6 +36,17 @@ def conUsuario():
         lista.delete(i)
     for usuario in usuarios:
         lista.insert("", END, values=usuario)
+
+def ejecutaPDF():
+    if varTitulo ==[]:
+        messagebox.showwarning("Importante", "Escribe un nombre al PDF")
+    else:
+        objPDF.add_page()
+        objPDF.chapter_body()
+        objPDF.output(varTitulo.get()+".pdf")
+        rutaPDF ="C:/Users/IDALI/OneDrive/Documentos/GitHub/FPOO195/tkSQTLite"+varTitulo.get()+".pdf"
+        messagebox.showinfo("Archivo creado", "PDF disponible en carpeta")
+        os.system(f"start {rutaPDF}")
     
 # 1 Crear la ventana
 Ventana = Tk()
@@ -46,6 +63,7 @@ pestana2 = ttk.Frame(panel)
 pestana3 = ttk.Frame(panel)
 pestana4 = ttk.Frame(panel)
 pestana5 = ttk.Frame(panel)
+pestana6 =ttk.Frame(panel)
 
 # 4 Agregamos las pestañas 
 
@@ -54,7 +72,7 @@ panel.add(pestana2, text="Buscar Usuario")
 panel.add(pestana3, text="Consultar Usuario")
 panel.add(pestana4, text="Editar Usuario")
 panel.add(pestana5, text="Borrar Usuario")
-
+panel.add(pestana6, text="Exportar PDF")
 # 5 Pestaña 1: Formulario de Insert 
 Label (pestana1, text= "Registro de Usuarios", fg="blue", font=("Modern", 18)).pack()
 
@@ -88,5 +106,14 @@ busqueda.pack()
 Label(pestana3, text="Usuarios", fg ="blue", font=("Mono", 15)).pack()
 TreeView()
 Button(pestana3, text="Actualizar Lista de Usuarios", command=conUsuario).pack()
+
+#Pestaña 6 Exportar pdf
+Label (pestana6, text= "Usuarios en PDF", fg="green", font=("Mono", 18)).pack()
+varTitulo= tk.StringVar()
+Label(pestana6, text="Escribe el titulo de tu archivo:  ").pack()
+Entry(pestana6, textvariable=varTitulo).pack()
+Button(pestana6, text="Crear PDF", command=ejecutaPDF).pack()
+
+
 
 Ventana.mainloop()
